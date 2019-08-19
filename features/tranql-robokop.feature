@@ -28,24 +28,6 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
       """
       When we fire the query to TranQL we expect a HTTP "200"
       Then the response should contain "knowledge_graph"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "hereditary breast carcinoma"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "RAD51C"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "XRCC2"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "CDH1"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "RAD51D"
-
-
-
-    Scenario: Test TranQL's answer when querying Gamma for disease to phenotypic_feature
-      Given the TranQL query:
-      """
-        set disease = "MONDO:0005737"
-        SELECT disease->phenotypic_feature
-        FROM "/graph/gamma/quick"
-        WHERE disease=$disease
-      """
-      When we fire the query to TranQL we expect a HTTP "200"
-      Then the response should contain "knowledge_graph"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Ebola hemorrhagic fever"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].type[*]" with "string" "phenotypic_feature"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Abnormal platelet morphology"
@@ -70,7 +52,6 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "bronchitis"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "rosacea"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "insomnia (disease)"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "rosacea"
       Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "prevents"
 
 
