@@ -1,6 +1,6 @@
-Feature: Test TranQL's answer from a given TranQL query that uses specific reasoners
+Feature: Test TranQL's answer from a given TranQL when querying only ICEES
 
-    Scenario: Test TranQL's answer when querying only ICEES
+    Scenario: Test TranQL's answer when querying only ICEES for all ages drug exposure
       Given the TranQL query:
       """
         SELECT population_of_individual_organisms->chemical_substance
@@ -8,9 +8,8 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
          WHERE icees.table = 'patient'
            AND icees.year = 2010
            AND icees.cohort_features.AgeStudyStart = '0-2'
-           AND icees.feature.EstResidentialDensity < 1
+           AND icees.feature.EstResidentialDensity = 1
            AND icees.maximum_p_value = 1
-           AND drug_exposure !=~ '^(SCTID.*|rxcui.*|CAS.*|SMILES.*|umlscui.*)$'
       """
       When we fire the query to TranQL we expect a HTTP "200"
       Then the response should contain "knowledge_graph"
@@ -29,9 +28,10 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
          WHERE icees.table = 'patient'
            AND icees.year = 2010
            AND icees.cohort_features.AgeStudyStart = '3-17'
-           AND icees.feature.EstResidentialDensity = 3
+           AND icees.feature.EstResidentialDensity > 1
+           AND icees.MaxDailyOzoneExposure_2_qcut > 2
+           AND icees.MaxDailyPM25Exposure_2_qcut > 2
            AND icees.maximum_p_value = 1
-           AND drug_exposure !=~ '^(SCTID.*|rxcui.*|CAS.*|SMILES.*|umlscui.*)$'
       """
       When we fire the query to TranQL we expect a HTTP "200"
       Then the response should contain "knowledge_graph"
@@ -55,8 +55,8 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
            AND icees.cohort_features.AgeStudyStart = '0-2'
            AND icees.feature.EstResidentialDensity = 1
            AND icees.feature.Race = 'African American'
-           AND icees.maximum_p_value = 1
            AND icees.feature.AsthmaDx = 1
+           AND icees.maximum_p_value = 1
            AND drug_exposure = 'PUBCHEM:5865'
       """
       When we fire the query to TranQL we expect a HTTP "200"
