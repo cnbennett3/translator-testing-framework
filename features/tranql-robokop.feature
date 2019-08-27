@@ -1,5 +1,6 @@
 Feature: Test TranQL's answer from a given TranQL query that uses specific reasoners
 
+
     Scenario: Test TranQL's answer when querying Gamma for disease to gene
       Given the TranQL query:
       """
@@ -11,14 +12,16 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
       When we fire the query to TranQL we expect a HTTP "200"
       Then the response should contain "knowledge_graph"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "hereditary breast carcinoma"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "RAD51C"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "XRCC2"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "CDH1"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "RAD51D"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].type[*]" with "string" "genetic_condition"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].type[*]" with "string" "gene"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "HMMR"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].chromosome" with "string" "5"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].id" with "string" "HGNC:5012"
+      Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "disease_to_gene_association"
 
 
 
-    Scenario: Test TranQL's answer when querying Gamma for disease to phenotypic_feature
+   Scenario: Test TranQL's answer when querying Gamma for disease to phenotypic_feature
       Given the TranQL query:
       """
         set disease = "MONDO:0005737"
@@ -30,10 +33,11 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
       Then the response should contain "knowledge_graph"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Ebola hemorrhagic fever"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].type[*]" with "string" "phenotypic_feature"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Abnormal platelet morphology"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Gastrointestinal hemorrhage"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Leukopenia"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Recurrent pharyngitis"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Abnormality of coagulation"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Ebola hemorrhagic fever"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Cardiac arrest"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Abnormal bleeding"
       Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "has_phenotype"
 
 
