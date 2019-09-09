@@ -71,7 +71,12 @@ def step_impl(context, status_code):
     """
 
     url = context.tranql_url
-    with closing(requests.post(url, json={"query":context.tranql_query}, stream=False)) as response:
+    headers = {
+        'Content-Type': 'text/plain',
+        'Accept': 'application/json'
+    }
+    data = context.tranql_query
+    with closing(requests.post(url, headers=headers, data=data, stream=False)) as response:
         context.code = response.status_code
         context.content_type = response.headers['content-type']
         assert response.status_code == status_code
