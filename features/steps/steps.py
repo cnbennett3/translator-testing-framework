@@ -3,6 +3,7 @@ import logging
 import requests
 import json
 import sys
+import pprint
 from behave import given, when, then
 from contextlib import closing
 from reasoner_diff.test_robokop import answer as robokop_answer
@@ -79,9 +80,13 @@ def step_impl(context, status_code):
     with closing(requests.post(url, headers=headers, data=data, stream=False)) as response:
         context.code = response.status_code
         context.content_type = response.headers['content-type']
-        assert response.status_code == status_code
         context.response_text = response.text
         context.response_json = response.json()
+        if response.status_code != 200:
+            print(f"Server returned [{response.status_code}] response code.")
+            pprint.pprint(context.response_json)
+            print("\n\n")
+        assert response.status_code == status_code
 
 @when('we fire the query to "{reasoner}" with URL "{url}" we expect a HTTP "{status_code:d}"')
 def step_impl(context, reasoner, url, status_code):
