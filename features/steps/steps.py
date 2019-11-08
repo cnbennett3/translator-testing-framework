@@ -83,6 +83,7 @@ def step_impl(context, status_code):
         context.response_text = response.text
         context.response_json = response.json()
         if response.status_code != 200:
+            print("\n")
             print(f"Server returned [{response.status_code}] response code.")
             pprint.pprint(context.response_json)
             print("\n\n")
