@@ -41,8 +41,8 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
       """
       When we fire the query to TranQL we expect a HTTP "200"
       Then the response should contain "knowledge_graph"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "stroke disorder"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "myocardial infarction (disease)"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Stroke"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Myocardial infarction"
       Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "prevents"
 
 
