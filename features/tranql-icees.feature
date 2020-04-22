@@ -4,7 +4,7 @@ Feature: Test TranQL's answer from a given TranQL when querying only ICEES
       Given the TranQL query:
       """
         SELECT population_of_individual_organisms->chemical_substance
-          FROM "/clinical/cohort/disease_to_chemical_exposure"
+          FROM "/clinical/cohort/disease_to_chemical_exposure?provider=icees"
          WHERE icees.table = 'patient'
            AND icees.year = 2010
            AND icees.cohort_features.AgeStudyStart = '0-2'
@@ -22,7 +22,7 @@ Feature: Test TranQL's answer from a given TranQL when querying only ICEES
       Given the TranQL query:
       """
         SELECT population_of_individual_organisms->chemical_substance
-          FROM "/clinical/cohort/disease_to_chemical_exposure"
+          FROM "/clinical/cohort/disease_to_chemical_exposure?provider=icees"
          WHERE icees.table = 'patient'
            AND icees.year = 2010
            AND icees.cohort_features.AgeStudyStart = '3-17'
@@ -42,7 +42,7 @@ Feature: Test TranQL's answer from a given TranQL when querying only ICEES
       Given the TranQL query:
       """
         SELECT population_of_individual_organisms->chemical_substance
-          FROM "/clinical/cohort/disease_to_chemical_exposure"
+          FROM "/clinical/cohort/disease_to_chemical_exposure?provider=icees"
          WHERE icees.table = 'patient'
            AND icees.year = 2010
            AND icees.cohort_features.AgeStudyStart = '0-2'
