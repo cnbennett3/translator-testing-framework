@@ -45,8 +45,7 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
       Then the response should contain "knowledge_graph"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "stroke disorder"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "myocardial infarction (disease)"
-      Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "causes"
-      # Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "prevents"
+      Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "prevents"
 
 
 
@@ -62,6 +61,5 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
       Then the response should contain "knowledge_graph"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "(S)-nicotine"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].type[*]" with "string" "disease"
-      Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "causes"
-      # Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "prevents"
+      Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "prevents"
 
