@@ -52,7 +52,7 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
     Scenario: Test TranQL's answer when querying Gamma for chemical_substance to disease
       Given the TranQL query:
       """
-        set chemical = "CHEMBL:CHEMBL3"
+        set chemical = "CHEMBL.COMPOUND:CHEMBL3"
         SELECT chemical_substance->disease
           FROM "/graph/gamma/quick"
         WHERE chemical_substance=$chemical
