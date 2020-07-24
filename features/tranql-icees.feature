@@ -14,7 +14,7 @@ Feature: Test TranQL's answer from a given TranQL when querying only ICEES
       When we fire the query to TranQL we expect a HTTP "200"
       Then the response should contain "knowledge_graph"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "cohort"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name[*]" with "string" "Fluticasone"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name[*]" with "string" "fluticasone"
       Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "association"
 
 
@@ -33,8 +33,8 @@ Feature: Test TranQL's answer from a given TranQL when querying only ICEES
       """
       When we fire the query to TranQL we expect a HTTP "200"
       Then the response should contain "knowledge_graph"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name[*]" with "string" "Prednisone"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name[*]" with "string" "Diphenhydramine"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name[*]" with "string" "prednisone"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name[*]" with "string" "diphenhydramine"
       Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "association"
 
 
@@ -50,10 +50,10 @@ Feature: Test TranQL's answer from a given TranQL when querying only ICEES
            AND icees.feature.Race = 'African American'
            AND icees.feature.AsthmaDx = 1
            AND icees.maximum_p_value = 1
-           AND drug_exposure = 'PUBCHEM:5865'
+           AND drug_exposure = 'PUBCHEM.COMPOUND:5865'
       """
       When we fire the query to TranQL we expect a HTTP "200"
       Then the response should contain "knowledge_graph"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "cohort"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "AvgDailyOzoneExposure"
-      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "AvgDailyPM2.5Exposure"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "ozone"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Particulate Matter"
