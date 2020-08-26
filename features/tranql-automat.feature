@@ -3,7 +3,7 @@ Feature: Test TranQL's answer from a given TranQL when querying automat
     Scenario: Test TranQL's answer when querying only  automat topmed for an abstract entity
       Given the TranQL query:
       """
-        SELECT chemical_substance->abstract_entity
+        SELECT chemical_substance->information_content_entity
           FROM "/graph/automat/topmed"
          WHERE chemical_substance='CHEBI:6495'
       """
@@ -14,7 +14,7 @@ Feature: Test TranQL's answer from a given TranQL when querying automat
     Scenario:  Test TranQL's answer to include some genes and gene families and abstact entities using automat
       Given the TranQL query:
       """
-      select gene->gene_family<-gene2:gene->chemical_substance->abstract_entity->clinical_modifier
+      select gene->gene_family<-gene2:gene->chemical_substance->information_content_entity->clinical_modifier
       from "/schema"
       where gene='NCBIGene:64241'
       """
