@@ -63,3 +63,17 @@ Feature: Test TranQL's answer from a given TranQL query that uses specific reaso
       Then the response should have some JSONPath "knowledge_graph.nodes[*].type[*]" with "string" "disease"
       Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "prevents"
 
+    Scenario: Test TranQL's answer when querying Gamma for disease to gene
+      Given the TranQL query:
+      """
+        select chemical_substance-[interacts_with]->gene-[causes]->disease
+        from "/graph/gamma/quick"
+        where disease="asthma"
+      """
+      When we fire the query to TranQL we expect a HTTP "200"
+      Then the response should contain "knowledge_graph"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "asthma"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "SUOX"
+      Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "nitric oxide"
+      Then the response should have some JSONPath "knowledge_graph.edges[*].type[*]" with "string" "causes"
+

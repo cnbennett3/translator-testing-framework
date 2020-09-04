@@ -5,9 +5,9 @@ def before_all(context):
     context.target = 'http://127.0.0.1:9999'
 
     tranql_conf = {
-        'local': "http://localhost:8001/tranql/query",
-        'dev' : "https://tranql-dev.renci.org/tranql/query",
-        'prod' : "https://tranql.renci.org/tranql/query"
+        'local': "http://localhost:8001/tranql/query?dynamic_id_resolution=true",
+        'dev' : "https://tranql-dev.renci.org/tranql/query?dynamic_id_resolution=true",
+        'prod' : "https://tranql.renci.org/tranql/query?dynamic_id_resolution=true"
     };
     environment = os.getenv('ENV', "local")
     print (f" Environment: {environment}")
