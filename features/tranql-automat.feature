@@ -43,3 +43,14 @@ Feature: Test TranQL's answer from a given TranQL when querying automat
       # 'all-trans-retinol' chebi
       Then the response should have some JSONPath "knowledge_graph.nodes[*].id" with "string" "CHEBI:17336"
       Then the response should have some JSONPath "knowledge_graph.nodes[*].name" with "string" "Medication/supplement use"
+
+
+    Scenario: Test TranQL's answer when querying only  automat topmed for an abstract entity
+      Given the TranQL query:
+      """
+        SELECT chemical_substance-[directly_interacts_with]->gene-[biomarker_for]->disease->information_content_entity
+          FROM "/schema"
+         WHERE gene='NCBIGene:64241'
+      """
+      When we fire the query to TranQL we expect a HTTP "200"
+      Then the response should contain "knowledge_graph"
